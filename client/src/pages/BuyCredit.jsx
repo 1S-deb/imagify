@@ -2,8 +2,49 @@ import React, { useContext } from 'react'
 import { assets, plans } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
 import {motion} from 'framer-motion'
-const BuyCredit = () => {
-  const {user} = useContext(AppContext)
+//import { loadStripe } from '@stripe/stripe-js';
+// const stripePromise = loadStripe(process.env.VITE_STRIPE_PUBLIC_KEY); // Load Stripe
+ const BuyCredit = () => {
+   const {user} = useContext(AppContext)
+//   const handlePurchase = async (plan) => {
+//     if (!user) {
+//       alert("Please log in to make a purchase.");
+//       return;
+//     }
+
+//     try {
+//       const stripe = await stripePromise;
+      
+//       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/payment/create-checkout-session`, {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//           userId: user.id,
+//           plan: plan.id,
+//           amount: plan.price,
+//           credits: plan.credits
+//         })
+//       });
+
+//       const session = await response.json();
+
+//       if (!session.success) {
+//         alert("Payment failed: " + session.message);
+//         return;
+//       }
+
+//       // Redirect user to Stripe Checkout
+//       const result = await stripe.redirectToCheckout({ sessionId: session.sessionId });
+
+//       if (result.error) {
+//         console.error(result.error);
+//       }
+      
+//     } catch (error) {
+//       console.error("Error:", error);
+//     }
+//   };
+
   return (
     <motion.div
     initial ={{opacity:0.2,y:100}}
