@@ -83,14 +83,14 @@ const Login = () => {
             <img src={assets.lock_icon} alt=""/>
             <input  onChange={e =>setPassword(e.target.value)} value={password}type="password" className='outline-none text-sm'placeholder='Password' required/>
         </div>
-        <p className='text-sm text-blue-600 my-4 
-        cursor-pointer'>Forgot password ?</p>
+        {/* <p className='text-sm text-blue-600 my-4 
+        cursor-pointer'>Forgot password ?</p> */}
 
-        <button className='bg-blue-600 w-full text-white py-2 
-        rounded-full'>{state==='Login'?'login':'create account'}</button>
+        <button className='bg-blue-600 w-full text-white py-2
+        rounded-full mt-4'>{state==='Login'?'login':'create account'}</button>
 
         { state=== 'Login' ?<p className='mt-5 text-center'>Don't have an account? 
-        <span className='text-blue-600 cursor-pointer' onClick={()=>setState('Sign Up')}>Sign up
+        <span className='text-blue-600 cursor-pointer mt-4' onClick={()=>setState('Sign Up')}>Sign up
         </span></p>
         :
         <p className='mt-5 text-center'>Already have an account?
