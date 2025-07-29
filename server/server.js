@@ -12,6 +12,7 @@ app.use(cors())
 await connectDB()
 app.use('/api/user',userRouter)
 app.use('/api/image',imageRouter)
+
 app.get('/',(req,res)=>res.send("API Working"))
 
 app.listen(PORT,()=> console.log('Sever running on port'+PORT));

@@ -2,22 +2,27 @@ import React, { useContext } from 'react'
 import { assets, plans } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
 import {motion} from 'framer-motion'
-//import { loadStripe } from '@stripe/stripe-js';
-// const stripePromise = loadStripe(process.env.VITE_STRIPE_PUBLIC_KEY); // Load Stripe
+import { loadStripe } from '@stripe/stripe-js';
+// const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY); // Load Stripe
  const BuyCredit = () => {
-   const {user} = useContext(AppContext)
+  const {user} = useContext(AppContext)
 //   const handlePurchase = async (plan) => {
 //     if (!user) {
 //       alert("Please log in to make a purchase.");
 //       return;
 //     }
+//        const token = localStorage.getItem('token'); // Retrieve the token
 
+//   if (!token) {
+//     alert('You are not logged in.');
+//     return;
+//   }
 //     try {
 //       const stripe = await stripePromise;
       
-//       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/payment/create-checkout-session`, {
+//       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/paymentStripe`, {
 //         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
+//         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${user.token}` },
 //         body: JSON.stringify({
 //           userId: user.id,
 //           plan: plan.id,
@@ -41,8 +46,9 @@ import {motion} from 'framer-motion'
 //       }
       
 //     } catch (error) {
-//       console.error("Error:", error);
-//     }
+//   console.error("Stripe payment error:", error);
+//   alert("An error occurred while processing your payment. Please try again later.");
+// }
 //   };
 
   return (
@@ -65,12 +71,19 @@ import {motion} from 'framer-motion'
              <p className='mt-3 mb-1 font-semibold'>{item.id}</p>
              <p className='text-sm'>{item.desc}</p>
              <p className='mt-6'><span className='text-3xl font-medium'>${item.price} </span>/ {item.credits} credits</p>
-             <button className='w-full bg-gray-800 text-white mt-8 text-sm rounded-md py-2.5 min-w-52'>{user ?'Purchase' :'Get Started'}</button>
-           </div>
+             <button
+              className='w-full bg-gray-800 text-white mt-8 text-sm rounded-md py-2.5 min-w-52'
+              onClick={() => handlePurchase(item)}  // Pass the plan data to handlePurchase
+            >
+              {user ? 'Purchase' : 'Get Started'}
+            </button>
+          </div>
         ))}
       </div>
     </motion.div>
-  )
-}
+  );
+};
+
+          
 
 export default BuyCredit
